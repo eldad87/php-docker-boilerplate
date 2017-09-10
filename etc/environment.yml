@@ -10,9 +10,11 @@
 # Webserver
 
 # General
-WEB_DOCUMENT_ROOT=/app/
-WEB_DOCUMENT_INDEX=index.php
-CLI_SCRIPT=php /app/index.php
+WEB_DOCUMENT_ROOT=/app/web/
+WEB_DOCUMENT_INDEX=app.php
+CLI_SCRIPT=/bin/console
+
+WEB_ALIAS_DOMAIN=symfony.dev
 
 #######################################
 # PHP settings
@@ -62,7 +64,7 @@ SSH_AUTH_KEY=""
 MYSQL_ROOT_PASSWORD=dev
 MYSQL_USER=dev
 MYSQL_PASSWORD=dev
-MYSQL_DATABASE=database
+MYSQL_DATABASE=symfony
 
 #######################################
 # PostgreSQL settings
