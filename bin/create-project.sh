@@ -26,7 +26,7 @@ case "$1" in
     ###################################
     "symfony")
         curl -LsS http://symfony.com/installer > /tmp/symfony.$$.phar
-        execInDir "$CODE_DIR" "php /tmp/symfony.$$.phar new '$CODE_DIR'"
+        execInDir "$CODE_DIR" "php /tmp/symfony.$$.phar new '$CODE_DIR' '${2:-lts}'"
         rm -f -- /tmp/symfony.$$.phar
         ;;
 
