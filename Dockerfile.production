@@ -59,6 +59,11 @@ ENV PROVISION_CONTEXT "production"
 # Deploy scripts/configurations
 COPY etc/             /opt/docker/etc/
 
+# Set timezone
+RUN rm /etc/localtime
+RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime
+RUN "date"
+
 RUN ln -sf /opt/docker/etc/cron/crontab /etc/cron.d/docker-boilerplate \
     && chmod 0644 /opt/docker/etc/cron/crontab \
     && echo >> /opt/docker/etc/cron/crontab \
