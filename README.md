@@ -72,6 +72,11 @@ git clone --recursive https://github.com/eldad87/sipmel.git app
 Create app/config/parameters.yml - need to match the DB settings in etc/environment*.yml
 docker exec -it docker_app_1 bash
 composer install
+exit
+```
+Linux only!
+```bash
+sudo chmod -R 777 app/var/cache app/var/logs app/var/sessions
 ```
 
 ### 3. Add docker's domain to host file
