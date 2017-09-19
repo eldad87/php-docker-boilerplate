@@ -4,3 +4,5 @@ nbproject
 /backup/*
 /app/*
 /docker-compose.yml
+/data/mysql/*
+/data/couchbase/*

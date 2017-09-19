@@ -1,7 +1,9 @@
 *.md
 .git*
-backup/*
+backup
 bin/*
 app/*
 docker/*
 documentation/*
+
+data

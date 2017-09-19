@@ -61,6 +61,24 @@ RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime
 RUN "date"
 
+# Couchbase
+RUN apt-get update
+RUN apt-get install lsb-release
+# https://developer.couchbase.com/documentation/server/4.6/sdk/php/start-using-sdk.html
+RUN wget http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-2-amd64.deb
+RUN dpkg -i couchbase-release-1.0-2-amd64.deb
+RUN apt-get update
+RUN apt-get install libcouchbase-dev build-essential zlib1g-dev -y
+RUN pecl install igbinary
+RUN echo extension=igbinary.so > /usr/local/etc/php/conf.d/igbinary.ini
+
+RUN pecl install pcs-1.3.3 # since couchbase-2.2.4
+RUN echo extension=pcs.so > /usr/local/etc/php/conf.d/pcs.ini
+
+RUN pecl install couchbase
+RUN echo extension=couchbase.so > /usr/local/etc/php/conf.d/couchbase.ini
+RUN rm couchbase-release-1.0-2-amd64.deb
+
 RUN ln -sf /opt/docker/etc/cron/crontab /etc/cron.d/docker-boilerplate \
     && chmod 0644 /opt/docker/etc/cron/crontab \
     && echo >> /opt/docker/etc/cron/crontab \

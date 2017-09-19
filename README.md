@@ -78,3 +78,10 @@ docker stop $(docker ps -a -q)
 # Delete all containers
 docker rm $(docker ps -aq)
 ```
+
+# Usefull
+Change volume/images/containers/etc storage path
+https://forums.docker.com/t/how-do-i-change-the-docker-image-installation-directory/1169
+Bug about high storage consumption
+https://github.com/moby/moby/issues/21925
+https://lebkowski.name/docker-volumes/

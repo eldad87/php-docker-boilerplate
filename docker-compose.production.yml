@@ -16,12 +16,31 @@ services:
       - redis
       #- memcached
       #- ftp
+      - couchbase
     ports:
       - "8000:80"
       - "8443:443"
       - "10022:22"
     volumes:
       - ./app/:/app/
+    volumes_from:
+      - storage
+    env_file:
+      - etc/environment.yml
+      - etc/environment.production.yml
+
+  #######################################
+  # Couchbase server
+  #######################################
+  couchbase:
+    build:
+      context: docker/couchbase/
+      dockerfile: Dockerfile
+    ports:
+      - 8091-8094:8091-8094
+      - 11210:11210
+    volumes:
+      - ./data/couchbase/:/opt/couchbase/var #TODO: Consider using regular volume
     volumes_from:
       - storage
     env_file:
@@ -42,6 +61,8 @@ services:
       #dockerfile: Percona-5.5.Dockerfile
       #dockerfile: Percona-5.6.Dockerfile
       dockerfile: Percona-5.7.Dockerfile
+    volumes:
+      - ./data/mysql/:/var/lib/mysql/ #TODO: Consider using regular volume
     volumes_from:
       - storage
     env_file:
